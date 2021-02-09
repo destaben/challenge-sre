@@ -58,4 +58,6 @@ module "pipeline" {
   project            = var.project
   environment        = var.environment
   github_token       = var.github_token
+  ecr_name           = module.eks.ecr_name
+  location           = var.location
 }

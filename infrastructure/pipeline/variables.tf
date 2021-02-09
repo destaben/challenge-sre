@@ -17,3 +17,13 @@ variable "github_token" {
   type        = string
   description = "Github token"
 }
+
+variable "ecr_name" {
+  type        = string
+  description = "ECR Repo name"
+}
+
+variable "location" {
+  type        = string
+  description = "Region where resources are deployed"
+}

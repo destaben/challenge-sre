@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 resource "aws_codebuild_project" "project_cb" {
   badge_enabled  = false
   build_timeout  = 60
@@ -25,6 +27,25 @@ resource "aws_codebuild_project" "project_cb" {
     image_pull_credentials_type = "CODEBUILD"
     privileged_mode             = false
     type                        = "LINUX_CONTAINER"
+    environment_variable {
+        name  = "AWS_DEFAULT_REGION"
+        value = var.location
+    }
+
+    environment_variable {
+        name  = "AWS_ACCOUNT_ID"
+        value = data.aws_caller_identity.current.user_id
+    }
+
+    environment_variable {
+        name  = "$IMAGE_REPO_NAME"
+        value = var.ecr_name
+    }
+
+    environment_variable {
+        name  = "$IMAGE_TAG"
+        value = var.environment
+    }
   }
 
   logs_config {
@@ -39,7 +60,6 @@ resource "aws_codebuild_project" "project_cb" {
   }
 
   source {
-    buildspec           = data.template_file.buildspec.rendered
     git_clone_depth     = 0
     insecure_ssl        = false
     report_build_status = false
