@@ -1,10 +1,3 @@
-data "template_file" "buildspec" {
-  template = "${file("${path.module}/buildspec.yml")}"
-  vars = {
-    environment  = var.environment
-  }
-}
-
 resource "aws_codebuild_project" "project_cb" {
   badge_enabled  = false
   build_timeout  = 60
