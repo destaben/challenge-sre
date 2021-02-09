@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 resource "aws_eks_cluster" "eks" {
-  version                   = 1.16
+  version                   = 1.18
   name                      = var.cluster_id
   role_arn                  = aws_iam_role.eks-master-iam.arn
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
@@ -27,7 +27,7 @@ resource "aws_eks_cluster" "eks" {
 }
 
 resource "aws_eks_node_group" "eks_node_group" {
-  release_version = "1.16.13-20200723"
+  release_version = "1.18.9-20210125"
   version         = aws_eks_cluster.eks.version
   cluster_name    = aws_eks_cluster.eks.name
   node_group_name = "${var.resource_prefix}-eks-node-group-01"
