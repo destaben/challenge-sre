@@ -25,8 +25,9 @@ resource "aws_codebuild_project" "project_cb" {
     compute_type                = "BUILD_GENERAL1_SMALL"
     image                       = "aws/codebuild/amazonlinux2-x86_64-standard:2.0"
     image_pull_credentials_type = "CODEBUILD"
-    privileged_mode             = false
+    privileged_mode             = true
     type                        = "LINUX_CONTAINER"
+
     environment_variable {
         name  = "AWS_DEFAULT_REGION"
         value = var.location
@@ -34,16 +35,16 @@ resource "aws_codebuild_project" "project_cb" {
 
     environment_variable {
         name  = "AWS_ACCOUNT_ID"
-        value = data.aws_caller_identity.current.user_id
+        value = data.aws_caller_identity.current.account_id
     }
 
     environment_variable {
-        name  = "$IMAGE_REPO_NAME"
+        name  = "IMAGE_REPO_NAME"
         value = var.ecr_name
     }
 
     environment_variable {
-        name  = "$IMAGE_TAG"
+        name  = "IMAGE_TAG"
         value = var.environment
     }
   }
