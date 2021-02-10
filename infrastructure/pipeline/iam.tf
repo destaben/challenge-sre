@@ -107,6 +107,22 @@ resource "aws_iam_policy" "build_policy" {
           ]
         },
         {
+          "Effect" = "Allow",
+          "Action" = [
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:BatchGetImage",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:PutImage",
+            "ecr:InitiateLayerUpload",
+            "ecr:UploadLayerPart",
+            "ecr:CompleteLayerUpload",
+            "ecr:GetAuthorizationToken"
+          ],
+          "Resource" = [
+            "*"
+          ]
+        },
+        {
           "Action" : [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
