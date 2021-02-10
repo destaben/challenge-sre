@@ -1,9 +1,12 @@
 resource "aws_codepipeline" "rest_pipeline" {
   name     = "${var.resource_prefix}-pipeline"
   role_arn = aws_iam_role.pipeline_role.arn
-  tags = {
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      "Name" = "${var.resource_prefix}-pipeline"
+    },
+    local.tags,
+  )
 
   artifact_store {
     location = aws_s3_bucket.artifacts_bucket.bucket

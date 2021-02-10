@@ -47,6 +47,11 @@ resource "aws_codebuild_project" "project_cb" {
         name  = "IMAGE_TAG"
         value = var.environment
     }
+
+    environment_variable {
+        name  = "EKS_CLUSTER"
+        value = var.cluster_id
+    }
   }
 
   logs_config {

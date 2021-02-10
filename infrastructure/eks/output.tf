@@ -9,3 +9,7 @@ output "aws_security_group_eks_workers" {
 output "ecr_name" {
   value = aws_ecr_repository.ecr.name
 }
+
+output "cluster_id" {
+  value = var.cluster_id
+}

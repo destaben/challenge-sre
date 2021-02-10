@@ -60,4 +60,5 @@ module "pipeline" {
   github_token       = var.github_token
   ecr_name           = module.eks.ecr_name
   location           = var.location
+  cluster_id         = module.eks.cluster_id
 }

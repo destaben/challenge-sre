@@ -27,3 +27,8 @@ variable "location" {
   type        = string
   description = "Region where resources are deployed"
 }
+
+variable "cluster_id" {
+  type        = string
+  description = "Cluster Id"
+}
