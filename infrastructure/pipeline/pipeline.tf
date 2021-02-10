@@ -40,15 +40,6 @@ resource "aws_codepipeline" "rest_pipeline" {
     action {
       category = "Build"
       configuration = {
-        "EnvironmentVariables" = jsonencode(
-          [
-            {
-              name  = "environment"
-              type  = "PLAINTEXT"
-              value = var.environment
-            },
-          ]
-        )
         "ProjectName" = aws_codebuild_project.project_cb.name
       }
       input_artifacts = [
