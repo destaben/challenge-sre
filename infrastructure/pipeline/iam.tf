@@ -116,7 +116,8 @@ resource "aws_iam_policy" "build_policy" {
             "ecr:InitiateLayerUpload",
             "ecr:UploadLayerPart",
             "ecr:CompleteLayerUpload",
-            "ecr:GetAuthorizationToken"
+            "ecr:GetAuthorizationToken",
+            "eks:DescribeCluster"
           ],
           "Resource" = [
             "*"
