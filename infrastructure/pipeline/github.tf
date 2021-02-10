@@ -1,5 +1,5 @@
 resource "aws_codepipeline_webhook" "bar" {
-  name            = "test-webhook-github-bar"
+  name            = "${var.resource_prefix}-repo-github-webhook"
   authentication  = "GITHUB_HMAC"
   target_action   = "Source"
   target_pipeline = aws_codepipeline.rest_pipeline.name
@@ -12,6 +12,12 @@ resource "aws_codepipeline_webhook" "bar" {
     json_path    = "$.ref"
     match_equals = "refs/heads/{Branch}"
   }
+  tags = merge(
+    {
+      "Name" = "${var.resource_prefix}-repo-github-webhook"
+    },
+    local.tags,
+  )
 }
 
 resource "github_repository_webhook" "bar" {
@@ -23,6 +29,5 @@ resource "github_repository_webhook" "bar" {
     insecure_ssl = true
     secret       = var.github_token
   }
-
   events = ["push"]
 }
