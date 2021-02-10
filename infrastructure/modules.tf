@@ -61,4 +61,5 @@ module "pipeline" {
   ecr_name           = module.eks.ecr_name
   location           = var.location
   cluster_id         = module.eks.cluster_id
+  kubectl_role_arn   = module.eks.kubectl_role_arn
 }

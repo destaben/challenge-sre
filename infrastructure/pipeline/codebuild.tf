@@ -52,6 +52,11 @@ resource "aws_codebuild_project" "project_cb" {
         name  = "EKS_CLUSTER"
         value = var.cluster_id
     }
+
+    environment_variable {
+        name  = "KUBECTL_ROLE_ARN"
+        value = var.kubectl_role_arn
+    }
   }
 
   logs_config {

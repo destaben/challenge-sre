@@ -32,3 +32,8 @@ variable "cluster_id" {
   type        = string
   description = "Cluster Id"
 }
+
+variable "kubectl_role_arn" {
+  type        = string
+  description = "Kubectl role ARN"
+}

@@ -13,3 +13,7 @@ output "ecr_name" {
 output "cluster_id" {
   value = var.cluster_id
 }
+
+output "kubectl_role_arn" {
+  value = aws_iam_role.eks_kubectl_role.arn
+}
