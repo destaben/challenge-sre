@@ -27,7 +27,7 @@ resource "aws_eks_cluster" "eks" {
 }
 
 resource "aws_eks_node_group" "eks_node_group" {
-  release_version = "1.18.9-20210125"
+  release_version = "1.18.9-20210208"
   version         = aws_eks_cluster.eks.version
   cluster_name    = aws_eks_cluster.eks.name
   node_group_name = "${var.resource_prefix}-eks-node-group-01"
