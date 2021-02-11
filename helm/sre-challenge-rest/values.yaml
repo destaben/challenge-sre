@@ -1,0 +1,38 @@
+eksClusterName: "EKS_CLUSTER"
+awsAccountId: "AWS_ACCOUNT_ID"
+awsDefaultRegion: "AWS_DEFAULT_REGION"
+imageRepoName: "IMAGE_REPO_NAME"
+imageTag: "IMAGE_TAG"
+
+replicaCount: 1
+image:
+  pullPolicy: IfNotPresent
+
+nameOverride: "rest"
+
+serviceAccount:
+  create: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  path: "/*"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
