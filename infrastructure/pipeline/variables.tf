@@ -37,3 +37,8 @@ variable "kubectl_role_arn" {
   type        = string
   description = "Kubectl role ARN"
 }
+
+variable "alerting_sms_number" {
+  type        = string
+  description = "SMS for alerting"
+}

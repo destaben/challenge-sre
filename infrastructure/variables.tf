@@ -70,3 +70,8 @@ variable "github_token" {
   type        = string
   description = "Github token"
 }
+
+variable "alerting_sms_number" {
+  type        = string
+  description = "SMS for alerting"
+}

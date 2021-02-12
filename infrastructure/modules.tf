@@ -23,6 +23,7 @@ module "eks" {
   max_workers                = var.max_workers
   min_workers                = var.min_workers
   des_workers                = var.des_workers
+  alerting_sms_number        = var.alerting_sms_number
 }
 
 data "aws_ami" "bastion" {
@@ -62,4 +63,5 @@ module "pipeline" {
   location           = var.location
   cluster_id         = module.eks.cluster_id
   kubectl_role_arn   = module.eks.kubectl_role_arn
+  alerting_sms_number = var.alerting_sms_number
 }

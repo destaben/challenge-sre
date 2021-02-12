@@ -61,3 +61,7 @@ variable "vpc_cidr" {
   description = "VPC cidr"
 }
 
+variable "alerting_sms_number" {
+  type        = string
+  description = "SMS for alerting"
+}
