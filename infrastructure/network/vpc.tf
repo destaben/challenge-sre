@@ -48,6 +48,7 @@ resource "aws_subnet" "pub" {
       "Name"            = format("%s-sub-pub-0%s", var.resource_prefix, count.index + 1)
       "SubnetType"      = "Public"
       "kubernetes.io/role/elb" = 1
+      "kubernetes.io/cluster/${var.k8s_cluster_ids[0]}" = "shared"
     },
     local.tags
   )
@@ -64,6 +65,7 @@ resource "aws_subnet" "pri" {
       "Name"                     = format("%s-sub-pri-0%s", var.resource_prefix, count.index + 1)
       "SubnetType"               = "Private"
       "kubernetes.io/role/internal-elb" = 1
+      "kubernetes.io/cluster/${var.k8s_cluster_ids[0]}" = "shared"
     },
     local.tags,
   )
