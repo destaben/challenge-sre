@@ -7,8 +7,8 @@ phases:
     commands:
       - echo Doing tests...
       - npm install -g mocha
-      - npm install
-      - npm run test
+      - npm install --prefix ./app
+      - npm run test --prefix ./app
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
