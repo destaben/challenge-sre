@@ -14,13 +14,17 @@ serviceAccount:
   create: true
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 80
 
 ingress:
   enabled: true
-  annotations: {}
-  path: "/*"
+  annotations: {
+    "kubernetes.io/ingress.class" : "alb",
+    "alb.ingress.kubernetes.io/scheme" : "internet-facing",
+    "alb.ingress.kubernetes.io/target-type" : "instance"
+    }
+  path: "/"
 
 resources:
   limits:
