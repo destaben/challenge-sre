@@ -1,7 +1,7 @@
 version: 0.2
 
 phases:
-  test:
+  install:
     runtime-versions:
       nodejs: 12
     commands:
@@ -30,8 +30,6 @@ phases:
     commands:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-  deploy:
-    commands:
       - echo Deploy to EKS on `date`
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER --role-arn $KUBECTL_ROLE_ARN
       - kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.yaml
