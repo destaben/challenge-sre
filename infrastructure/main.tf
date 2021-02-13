@@ -7,7 +7,7 @@ provider "aws" {
 
 provider "github" {
   token   = var.github_token
-  owner   = "destaben"
+  owner   = var.github_owner
   version = "~> 4.4.0"
 }
 
