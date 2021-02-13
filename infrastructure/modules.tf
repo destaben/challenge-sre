@@ -24,7 +24,6 @@ module "eks" {
   min_workers                = var.min_workers
   des_workers                = var.des_workers
   alerting_sms_number        = var.alerting_sms_number
-  github_owner               = var.github_owner
 }
 
 module "pipeline" {
