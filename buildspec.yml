@@ -31,7 +31,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo Deploy to EKS on `date`
-      - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER
+      - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER --role-arn $KUBECTL_ROLE_ARN
       - kubectl apply --v=4 -f ./k8s/cert-manager.yaml
       - helm upgrade -i cluster-additional-tools ./k8s/cluster-additional-tools --set eksClusterName=$EKS_CLUSTER --set awsDefaultRegion=$AWS_DEFAULT_REGION
       - helm upgrade -i sre-challenge ./k8s/sre-challenge-rest --set eksClusterName=$EKS_CLUSTER --set awsAccountId=$AWS_ACCOUNT_ID /
