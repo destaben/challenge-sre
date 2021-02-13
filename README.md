@@ -38,7 +38,8 @@ A tfvars file is needed to create the infrastructure, check TFVars table below. 
 We will need to init our Terraform modules with the following command:
 
 ```
-terraform init infrastructure/
+cd infrastructure
+terraform init
 ```
 
 ## Apply Terraform
@@ -46,13 +47,13 @@ terraform init infrastructure/
 If you want to deploy the whole infrastructure, you will need to execute the following command:
 
 ```
-terraform apply infrastructure/ -var-file=./infrastructure/vars/file.tfvars
+terraform apply -var-file=./vars/file.tfvars
 ```
 
 If you want to deploy only a module:
 
 ```
-terraform apply infrastructure/ -target module.network -var-file=./infrastructure/vars/file.tfvars
+terraform apply -target module.network -var-file=./vars/file.tfvars
 ```
 
 ## Terraform 0.13 Providers
@@ -62,7 +63,6 @@ terraform apply infrastructure/ -target module.network -var-file=./infrastructur
 |     aws      |  ~> 3.27.0  |
 |   github     |  ~> 4.4.0   |
 |  template    |  ~> 3.27.0  |
-|    helm      |  ~> 2.2.0   |
 |    null      |  ~> 3.0.0   |
 |  kubernetes  |  ~> 4.4.0   |
 
@@ -88,4 +88,4 @@ terraform apply infrastructure/ -target module.network -var-file=./infrastructur
 
 ## Check Hello World endpoint
 
-An Aplication Load Balancer will be deployed in your AWS account. Check DNS name under EC2 -> Load Balancers
+An Aplication Load Balancer will be deployed in your AWS account. Check DNS name under EC2 -> Load Balancers. 5 minutes are needed more or less to execute the pipeline and create the Load Balancer.
