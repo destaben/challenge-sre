@@ -76,4 +76,14 @@ resource "aws_codebuild_project" "project_cb" {
     report_build_status = false
     type                = "CODEPIPELINE"
   }
+
+  vpc_config {
+    vpc_id = var.vpc_id
+
+    subnets = var.pri_subnet_ids
+
+    security_group_ids = [
+      aws_security_group.codebuild_sg.id
+    ]
+  }
 }
