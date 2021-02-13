@@ -58,3 +58,24 @@ resource "aws_iam_role_policy_attachment" "eks_kubectl_amazon_ec2_container_regi
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
   role       = aws_iam_role.eks_kubectl_role.name
 }
+
+
+resource "kubernetes_config_map" "aws_auth_configmap" {
+  metadata {
+    name      = "aws-auth"
+    namespace = "kube-system"
+  }
+  data = {
+      mapRoles = <<YAML
+  - rolearn: ${aws_iam_role.eks_kubectl_role.arn}
+    username: system:node:{{EC2PrivateDNSName}}
+    groups:
+      - system:bootstrappers
+      - system:nodes
+  - rolearn: ${aws_iam_role.eks_kubectl_role.arn}
+    username: kubectl-access-role
+    groups:
+      - system:masters
+  YAML
+    }
+}

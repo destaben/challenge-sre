@@ -11,7 +11,7 @@ resource "aws_eks_cluster" "eks" {
     security_group_ids      = [aws_security_group.eks_sg.id]
     subnet_ids              = var.pri_subnet_ids
     endpoint_private_access = true
-    endpoint_public_access  = false
+    endpoint_public_access  = true
   }
   tags = merge(
     {
@@ -24,6 +24,9 @@ resource "aws_eks_cluster" "eks" {
     aws_iam_role_policy_attachment.cluster-AmazonEKSServicePolicy,
     aws_cloudwatch_log_group.eks_cloudwatch_group,
   ]
+  provisioner "local-exec" {
+    command = "aws eks update-kubeconfig --region ${var.location} --name  ${var.cluster_id}"
+  }
 }
 
 resource "aws_eks_node_group" "eks_node_group" {

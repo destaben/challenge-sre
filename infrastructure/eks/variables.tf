@@ -51,11 +51,6 @@ variable "pri_subnet_ids" {
   description = "App Subnets Ids"
 }
 
-variable "aws_security_group_bastion" {
-  type        = string
-  description = "AWS Security Group Bastion ID"
-}
-
 variable "vpc_cidr" {
   type        = string
   description = "VPC cidr"
@@ -64,4 +59,9 @@ variable "vpc_cidr" {
 variable "alerting_sms_number" {
   type        = string
   description = "SMS for alerting"
+}
+
+variable "location" {
+  type        = string
+  description = "Region where resources are deployed"
 }
