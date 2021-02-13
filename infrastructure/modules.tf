@@ -64,4 +64,6 @@ module "pipeline" {
   cluster_id         = module.eks.cluster_id
   kubectl_role_arn   = module.eks.kubectl_role_arn
   alerting_sms_number = var.alerting_sms_number
+  vpc_id             = module.network.vpc_id
+  pri_subnet_ids     = module.network.pri_subnet_ids
 }
