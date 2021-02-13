@@ -15,13 +15,6 @@ provider "template" {
   version = "~> 2.2.0"
 }
 
-provider "helm" {
-  version = "~> 2.0.2"
-  kubernetes {
-    config_path = "~/.kube/config"
-  }
-}
-
 provider "null" {
   version = "~> 3.0.0"
 }
