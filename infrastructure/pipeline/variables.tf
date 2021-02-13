@@ -42,3 +42,13 @@ variable "alerting_sms_number" {
   type        = string
   description = "SMS for alerting"
 }
+
+variable "vpc_id" {
+  type        = string
+  description = "VPC Id"
+}
+
+variable "pri_subnet_ids" {
+  type        = list(string)
+  description = "App Subnets Ids"
+}

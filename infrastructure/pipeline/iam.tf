@@ -77,7 +77,7 @@ resource "aws_iam_role" "static_build_role" {
           Principal = {
             Service = "codebuild.amazonaws.com"
           }
-        },
+        }
       ]
       Version = "2012-10-17"
     }
@@ -124,6 +124,13 @@ resource "aws_iam_policy" "build_policy" {
           ]
         },
         {
+            "Effect": "Allow", 
+            "Action": [
+                "ec2:*"
+            ], 
+            "Resource": "*" 
+        },
+        {
           "Action" : [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
@@ -131,6 +138,12 @@ resource "aws_iam_policy" "build_policy" {
           ],
           "Effect" : "Allow",
           "Resource" : "arn:aws:logs:*"
+        },
+        {
+            "Sid": "STSASSUME",
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": var.kubectl_role_arn
         }
       ]
       Version = "2012-10-17"
