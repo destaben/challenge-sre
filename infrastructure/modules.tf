@@ -39,4 +39,7 @@ module "pipeline" {
   alerting_sms_number = var.alerting_sms_number
   vpc_id             = module.network.vpc_id
   pri_subnet_ids     = module.network.pri_subnet_ids
+  depends_on = [
+    module.eks
+  ]
 }
