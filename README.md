@@ -82,6 +82,7 @@ terraform apply infrastructure/ -target module.network -var-file=./infrastructur
 |max_workers                |Max nodes number of EKS                                          |'number'             |
 |min_workers                |Min nodes number of EKS                                          |'number'             |
 |des_workers                |Desired nodes number of EKS                                      |'number'             |
+|github_owner               |Github project owner name                                        |'string'             |
 |github_token               |Github authentication generated token                            |'string'             |
 |alerting_sms_number        |Telephone number with country code to send sms on alert          |'string'             |
 
