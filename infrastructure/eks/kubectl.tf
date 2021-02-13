@@ -59,7 +59,6 @@ resource "aws_iam_role_policy_attachment" "eks_kubectl_amazon_ec2_container_regi
   role       = aws_iam_role.eks_kubectl_role.name
 }
 
-
 resource "kubernetes_config_map" "aws_auth_configmap" {
   metadata {
     name      = "aws-auth"

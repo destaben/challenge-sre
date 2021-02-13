@@ -63,3 +63,10 @@ resource "aws_cloudwatch_log_group" "eks_cloudwatch_group" {
   name              = "/aws/eks/${var.cluster_id}/cluster"
   retention_in_days = 7
 }
+
+resource "null_resource" "cert_manager" {
+  depends_on = [ aws_eks_cluster.eks ]
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${path.module}/deploy/cert-manager.yaml"
+  }
+}
