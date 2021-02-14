@@ -1,19 +1,23 @@
 # SRE Challenge
 
+Terraform script that deploy a full infrastructure in AWS, with application deploy pipeline and SMS alerting.
+
 ## Prerequisites
 
-- awscli v2
-- kubectl v1.18
-- Terraform cli v0.13
-- Github account with access token created
+- awscli v2 (https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.htmlkube)
+- kubectl v1.18 (https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- Terraform cli v0.13 (https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- Github account with access token created (https://github.com/settings/tokens), with the following permissions:
+    - admin:repo_hook
+    - repo
 
 ## Architecture diagram
 
---IMAGE--
+<img src="./challenge-sre-diagram.jpg">
 
 ## Configure AWS user
 
-You will need to create a programatic user with AdministratorAccess policy enabled.
+You will need to create a programatic user with 'AdministratorAccess' policy enabled.
 
 Configure this user in your console:
 
@@ -44,13 +48,13 @@ terraform init
 
 ## Apply Terraform
 
-If you want to deploy the whole infrastructure, you will need to execute the following command:
+To deploy the whole infrastructure, you will need to execute the following command:
 
 ```
 terraform apply -var-file=./vars/file.tfvars
 ```
 
-If you want to deploy only a module:
+You can also deploy module by module:
 
 ```
 terraform apply -target module.network -var-file=./vars/file.tfvars
@@ -88,4 +92,4 @@ terraform apply -target module.network -var-file=./vars/file.tfvars
 
 ## Check Hello World endpoint
 
-An Aplication Load Balancer will be deployed in your AWS account. Check DNS name under EC2 -> Load Balancers. 5 minutes are needed more or less to execute the pipeline and create the Load Balancer.
+An Application Load Balancer will be deployed in your AWS account. Check DNS name under EC2 -> Load Balancers. 5 minutes are needed more or less to execute the pipeline and create the Load Balancer.
