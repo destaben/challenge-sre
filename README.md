@@ -101,5 +101,5 @@ terraform apply -target module.network -var-file=./vars/file.tfvars
 
 ## Check Hello World endpoint
 
-An Application Load Balancer will be deployed in your AWS account. Check DNS name under EC2 -> Load Balancers. 
+When Terraform scripts finish, an Application Load Balancer will be deployed in your AWS account. Check DNS name under EC2 -> Load Balancers. 
 5 minutes are needed more or less to execute the pipeline and create the Load Balancer. Enjoy the automation!
