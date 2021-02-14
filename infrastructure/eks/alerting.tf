@@ -1,4 +1,4 @@
-resource "aws_cloudwatch_metric_alarm" "failed_build_alarm" {
+resource "aws_cloudwatch_metric_alarm" "service_down_alarm" {
   alarm_name                = "${var.resource_prefix}-down-alarm"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = "2"
