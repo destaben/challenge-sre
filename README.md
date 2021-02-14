@@ -1,6 +1,6 @@
 # SRE Challenge
 
-Terraform script that deploy a full infrastructure in AWS, with application deploy pipeline and SMS alerting.
+Terraform script that deploys a full infrastructure in AWS, with deploy pipeline and SMS alerting.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ aws configure
 
 This project is composed by 2 different folders:
 - app: Application code
-- infrastructure: Terraform code to deploy infrastructure on AWS
+- infrastructure: Terraform code to deploy infrastructure in AWS
 
 Terraform code contains 3 differents modules:
 
@@ -37,12 +37,21 @@ Terraform code contains 3 differents modules:
 
 ## Init Terraform
 
-A tfvars file is needed to create the infrastructure, check TFVars table below. I recommend to place the tfvars file into a vars folder in infrastructure.
+A tfvars file is needed to create the infrastructure, check TFVars table below. Create a folder called 'vars', for example, inside infrastructure folder.
 
-We will need to init our Terraform modules with the following command:
+```
+mkdir ./infrastructure/vars/
+```
+
+Change your console directory to infrastructure:
 
 ```
 cd infrastructure
+```
+
+Then we will need to init our Terraform modules with the following command:
+
+```
 terraform init
 ```
 
