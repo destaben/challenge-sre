@@ -66,7 +66,7 @@ resource "aws_cloudwatch_log_group" "eks_cloudwatch_group" {
 }
 
 resource "null_resource" "cert_manager" {
-  depends_on = [ aws_eks_cluster.eks ]
+  depends_on = [ aws_eks_cluster.eks, kubernetes_config_map.aws_auth_configmap ]
   provisioner "local-exec" {
     command = "kubectl apply -f ${path.module}/deploy/cert-manager.yaml"
   }
