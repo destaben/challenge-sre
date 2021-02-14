@@ -50,6 +50,7 @@ resource "aws_eks_node_group" "eks_node_group" {
     aws_iam_role_policy_attachment.eks-node-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.eks-node-AmazonEC2ContainerRegistryReadOnly,
     aws_iam_role_policy_attachment.eks-node-AmazonCloudwatch,
+    kubernetes_config_map.aws_auth_configmap
   ]
   tags = merge(
     {
@@ -68,5 +69,12 @@ resource "null_resource" "cert_manager" {
   depends_on = [ aws_eks_cluster.eks ]
   provisioner "local-exec" {
     command = "kubectl apply -f ${path.module}/deploy/cert-manager.yaml"
+  }
+}
+
+resource "null_resource" "metrics_server" {
+  depends_on = [ null_resource.cert_manager ]
+  provisioner "local-exec" {
+    command = "kubectl apply -f ${path.module}/deploy/metrics-server.yaml"
   }
 }
